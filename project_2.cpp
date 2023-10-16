@@ -48,234 +48,63 @@ int main() {
         else if (option == 3) { // Create directory
             cout << "Enter the name of the new directory: ";
             cin >> name;
-            bool isNum = false;
-            for (char a : name) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-            if (isNum) {
-                cout << "Invalid name, try again!\n\n";
-            }
-            else {
-                cout << "Created!\n";
-                fmc.createDiractory(name);
-            }
+            fmc.createDiractory(name);
         }
 
         else if (option == 4) { // Create file
             cout << "Enter the name of the new file: ";
             cin >> name;
-            bool isNum = false;
-            for (char a : name) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                cout << "Created!\n";
-                fmc.createFile(name);
-            }
+            fmc.createFile(name);
         }
 
         else if (option == 5) { // Remove
             cout << "Enter the name of the element to remove: ";
             cin >> name;
-            bool isNum = false;
-            for (char a : name) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                cout << "Removed!\n";
-                fmc.remove(name);
-            }
+            fmc.remove(name);
         }
 
         else if (option == 6) { // Rename
             string old_name, new_name;
             cout << "Enter the old name of the element to rename: ";
             cin >> old_name;
-            bool isNum = false;
-            for (char a : old_name) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                cout << "Enter the new name of the element: ";
-                cin >> new_name;
-                bool isNum = false;
-                for (char a : new_name) {
-                    if (isdigit(a)) {
-                        isNum = true;
-                        break;
-                    }
-                    else {
-                        isNum = false;
-                    }
-                }
-
-                if (isNum) {
-                    cout << "Invalid name, try again!\n";
-                }
-                else {
-                    fmc.rename(old_name, new_name);
-                }
-            }
+            
+            cout << "Enter the new name of the element: ";
+            cin >> new_name;
+            fmc.rename(old_name, new_name);
         }
 
         else if (option == 7) { // Copy
             string source, destination;
             cout << "Enter the source element to copy: ";
             cin >> source;
-            bool isNum = false;
-            for (char a : source) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                cout << "Enter the destination element: ";
-                cin >> destination;
-                bool isNum = false;
-                for (char a : destination) {
-                    if (isdigit(a)) {
-                        isNum = true;
-                        break;
-                    }
-                    else {
-                        isNum = false;
-                    }
-                }
-
-                if (isNum) {
-                    cout << "Invalid name, try again!\n";
-                }
-                else {
-                    fmc.copy(source, destination);
-                }
-            }
+            
+            cout << "Enter the destination element: ";
+            cin >> destination;
+            fmc.copy(source, destination);
         }
 
         else if (option == 8) { // Move
             string source, destination;
             cout << "Enter the source element to move: ";
             cin >> source;
-            bool isNum = false;
-            for (char a : source) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                cout << "Enter the destination element: ";
-                cin >> destination;
-                bool isNum = false;
-                for (char a : destination) {
-                    if (isdigit(a)) {
-                        isNum = true;
-                        break;
-                    }
-                    else {
-                        isNum = false;
-                    }
-                }
-                if (isNum) {
-                    cout << "Invalid name, try again!\n";
-                }
-                else {
-                    fmc.move(source, destination);
-                }
-            }
+            
+            cout << "Enter the destination element: ";
+            cin >> destination;
+            fmc.move(source, destination);
         }
 
         else if (option == 9) { // Size
             cout << "Enter the name of the element to get its size: ";
             cin >> name;
-            bool isNum = false;
-            for (char a : name) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            }
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-
-            else {
-                cout << "The size of " << name << " is " << fmc.size(name) << " bytes.\n";
-            }
+            cout << "The size of " << name << " is " << fmc.size(name) << " bytes.\n";
         }
 
         else if (option == 10) { // Search
             string mask;
-            cout << "Enter the mask (regular expression) to search for elements: ";
+            cout << "Enter the mask to search for elements: ";
             cin >> mask;
-            bool isNum = false;
-            for (char a : mask) {
-                if (isdigit(a)) {
-                    isNum = true;
-                    break;
-                }
-                else {
-                    isNum = false;
-                }
-            } 
-
-            if (isNum) {
-                cout << "Invalid name, try again!\n";
-            }
-            else {
-                fmc.search(mask);
-            }
+            
+            fmc.search(mask);
         }
         else if (option == 0) { // Exit
             cout << "Thank you for using the file manager program.\n";
