@@ -1,6 +1,6 @@
 #include "FileManagerChild.h"
 
-// Constructor, which takes the initial path and initializes the current_path field
+// Constructor that takes the initial path and initializes the current_path field
 FileManagerChild::FileManagerChild(string start_path) {
 
     current_path = fs::path(start_path);
@@ -13,6 +13,7 @@ FileManagerChild::FileManagerChild(string start_path) {
 
 // Show a list of available drives
 void FileManagerChild::showDrives() {
+    // Loop that iterates over all elements in the root directory
     for (const auto& entry : fs::directory_iterator("/")) {
         if (entry.is_directory()) {
             cout << entry.path().filename() << "\n";
@@ -22,6 +23,7 @@ void FileManagerChild::showDrives() {
 
 // Show the contents of the current directory
 void FileManagerChild::showDirectory() {
+    // Loop that iterates over all elements in the current directory
     for (const auto& entry : fs::directory_iterator(current_path)) {
         cout << entry.path().filename() << "\n";
     }
@@ -31,7 +33,7 @@ void FileManagerChild::showDirectory() {
 void FileManagerChild::createDiractory(string dir_name) {
     fs::path new_dir = current_path / dir_name;
     if (fs::create_directory(new_dir)) {
-        cout << "Catalog: " << dir_name << "Directory created successfully.\n";
+        cout << "Catalog: " << dir_name << " Directory created successfully.\n";
     }
     else {
         cerr << "Catalog creation error!" << dir_name << "\n";
@@ -59,7 +61,7 @@ void FileManagerChild::remove(string name) {
         cout << "Element removed successfully." << endl;
     }
     catch (fs::filesystem_error& ex) {
-        
+
         cout << ex.what() << endl;
     }
 }
@@ -82,6 +84,7 @@ void FileManagerChild::copy(string source, string destination) {
     fs::path src = current_path / source;
     fs::path dst = current_path / destination;
     try {
+        // Loop that recursively copies all elements from source to destination
         fs::copy(src, dst, fs::copy_options::recursive);
         cout << "Element copied successfully." << endl;
     }
@@ -103,17 +106,21 @@ void FileManagerChild::move(string source, string destination) {
     }
 }
 
+
 // Get the size of a directory or file with the specified name in the current directory
 uintmax_t FileManagerChild::size(string name) {
     fs::path target = current_path / name;
     if (fs::exists(target)) {
         try {
+            // If the target is a regular file, return its size
             if (fs::is_regular_file(target)) {
                 return fs::file_size(target);
             }
 
+            // If the target is a directory, calculate the total size of all files in it
             else if (fs::is_directory(target)) {
                 uintmax_t total_size = 0;
+                // Loop that iterates over all elements in the directory recursively
                 for (const auto& entry : fs::recursive_directory_iterator(target)) {
                     if (fs::is_regular_file(entry)) {
                         total_size += fs::file_size(entry);
@@ -133,14 +140,17 @@ uintmax_t FileManagerChild::size(string name) {
 
 // Search for files and directories matching the specified mask (regular expression)
 void FileManagerChild::search(string mask) {
+    // Creates a regular expression object `re` with the pattern `mask`
     regex re(mask);
     int count = 0;
+    // Loop that iterates over all elements in the current directory recursively
     for (const auto& entry : fs::recursive_directory_iterator(current_path)) {
         string name = entry.path().filename().string();
+        // If the name matches the regular expression, print it and increment the count
         if (regex_match(name, re)) {
             cout << entry.path().string() << '\n';
             count++;
         }
     }
     cout << "Found " << count << " elements matching the mask " << mask << '\n';
-} 
+}
