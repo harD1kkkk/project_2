@@ -1,4 +1,4 @@
-﻿// project_2.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// project_2.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
@@ -67,7 +67,7 @@ int main() {
             string old_name, new_name;
             cout << "Enter the old name of the element to rename: ";
             cin >> old_name;
-            
+
             cout << "Enter the new name of the element: ";
             cin >> new_name;
             fmc.rename(old_name, new_name);
@@ -77,7 +77,7 @@ int main() {
             string source, destination;
             cout << "Enter the source element to copy: ";
             cin >> source;
-            
+
             cout << "Enter the destination element: ";
             cin >> destination;
             fmc.copy(source, destination);
@@ -87,7 +87,7 @@ int main() {
             string source, destination;
             cout << "Enter the source element to move: ";
             cin >> source;
-            
+
             cout << "Enter the destination element: ";
             cin >> destination;
             fmc.move(source, destination);
@@ -101,11 +101,11 @@ int main() {
 
         else if (option == 10) { // Search
             string mask;
-            cout << "Enter the mask to search for elements: ";
+            cout << "Enter the mask (regular expression) to search for elements: ";
             cin >> mask;
-            
             fmc.search(mask);
         }
+
         else if (option == 0) { // Exit
             cout << "Thank you for using the file manager program.\n";
         }
